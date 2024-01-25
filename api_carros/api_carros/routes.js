@@ -1,11 +1,9 @@
 // routes.js
-
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql2');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-
 const connection = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
@@ -13,11 +11,11 @@ const connection = mysql.createConnection({
   database: 'carros_app',
 });
 
-// Middleware para habilitar o CORS
+//Middleware para habilitar o CORS
 router.use(cors());
 router.use(express.json());
 
-// Rota para salvar os dados da corrida
+//Rota para salvar os dados da corrida
 router.post('/encerrarCorrida', (req, res) => {
   const {
     nome,
@@ -64,7 +62,7 @@ router.post('/encerrarCorrida', (req, res) => {
   );
 });
 
-// Rota para obter todos os registros
+//Rota para obter todos os registros
 router.get('/getCarrosControle', (req, res) => {
     const query = 'SELECT * FROM carros_controle';
   
@@ -78,7 +76,7 @@ router.get('/getCarrosControle', (req, res) => {
     });
   });
   
-// Exibir usuarios cadastrados
+//Exibir usuarios cadastrados
 router.get('/getCarrosUsuarios', (req, res) => {
   const query = 'SELECT * FROM carros_usuarios';
 
@@ -92,7 +90,7 @@ router.get('/getCarrosUsuarios', (req, res) => {
   });
 });
 
-// Exibir usuario cadastrado {id}
+//Exibir usuario cadastrado {id}
 router.get('/getCarroUsuario/:id', (req, res) => {
   const usuarioId = req.params.id;
   const query = 'SELECT * FROM carros_usuarios WHERE id = ?';
@@ -111,7 +109,7 @@ router.get('/getCarroUsuario/:id', (req, res) => {
   });
 });
 
-// Exibir um registro de corrida pelo {id}
+//Exibir um registro de corrida pelo {id}
 router.get('/getCarroControle/:id', (req, res) => {
     const carroId = req.params.id;
     const query = 'SELECT * FROM carros_controle WHERE id = ?';
@@ -130,11 +128,11 @@ router.get('/getCarroControle/:id', (req, res) => {
     });
   });
 
-// Rota para Cadastrar novo usuario
+//Rota para Cadastrar novo usuario
 router.post('/CadastrarNovoUsuario', (req, res) => {
   const { nome, nome_completo, senha, setor, telefone, } = req.body;
 
-  console.log('Dados recebidos no servidor:', { nome, nome_completo, senha, setor, telefone,});
+  console.log('Dados recebidos no servidor:', { nome, nome_completo, senha, setor, telefone,}); //APAGAR
 
   const query = 'INSERT INTO carros_usuarios (nome, nome_completo ,senha, setor, telefone) VALUES (? , ?, ?, ?, ?)';
   connection.query(
@@ -151,7 +149,7 @@ router.post('/CadastrarNovoUsuario', (req, res) => {
   );
 });
 
-// Rota para autenticar um usuário
+//Rota para autenticar um usuário
 router.post('/login', (req, res) => {
   const { nome, senha } = req.body;
   const query = 'SELECT * FROM carros_usuarios WHERE nome = ? AND senha = ?';
