@@ -77,7 +77,20 @@ router.get('/getCarrosControle', (req, res) => {
       }
     });
   });
+  
+// Exibir usuarios cadastrados
+router.get('/getCarrosUsuarios', (req, res) => {
+  const query = 'SELECT * FROM carros_usuarios';
 
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.error('Erro ao obter dados do banco de dados:', error);
+      res.status(500).json({ error: 'Erro ao obter dados do banco de dados' });
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 // Rota para obter um registro pelo ID
 router.get('/getCarroControle/:id', (req, res) => {
