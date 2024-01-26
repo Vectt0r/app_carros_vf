@@ -7,7 +7,7 @@ const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isConnected, setIsConnected] = useState(true);
-
+  
   const apiUrl = 'http://172.20.15.149:3000/api/login';
 
   //Teste a conexão do usuario
@@ -46,36 +46,30 @@ const LoginScreen = ({ navigation }) => {
     }
     try {
       const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nome: username,
-          senha: password,
-        }),
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              nome: username,
+              senha: password,
+          }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        //Manter ultimo usuario no campo de login
-        await AsyncStorage.setItem('lastUsername', username);
-
-        if (data.token) {
-          await AsyncStorage.setItem('accessTokenNetCometApp', data.token); // Token de acesso do usario
-          navigation.navigate('Home');
-        } else {
-          console.error('Token de acesso indefinido');
-        }
+          // Autenticação bem-sucedida
+          alert('Autenticação bem-sucedida');
+           navigation.navigate('Home');
       } else {
-        //alerta caso a autenticação falhe
-        alert('Credenciais inválidas');
+          // Alerta caso a autenticação falhe
+          alert('Credenciais inválidas');
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Erro ao autenticar:', error);
-    }
-  };
+  }
+};
 
   return (
     <View style={styles.container}>

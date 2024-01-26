@@ -12,20 +12,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            //linha que extrai o hash da senha
-            //$hashSenha = $row["senha"];
+            // linha que extrai o hash da senha
+            $hashSenha = $row["senha"];
 
-            //condição de verificação do hash
-            //if (password_verify($senha, $hashSenha)) {
-            if ($senha == $row["senha"]) {
+            // Verifica se a senha fornecida corresponde ao hash armazenado no banco
+            if (password_verify($senha, $hashSenha)) {
                 $_SESSION["nome"] = $nome;
                 header("Location: dashboard.php");
+                exit();
+            } else {
+                // Se a senha não corresponde, a autenticação falhou
+                $_SESSION['erroLogin'] = true;
+                header("Location: index.php");
                 exit();
             }
         }
     }
 }
-// Se chegou aqui a autenticação falhou
+
+// Se chegou aqui, a autenticação falhou
 $_SESSION['erroLogin'] = true;
 header("Location: index.php");
 exit();

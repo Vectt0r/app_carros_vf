@@ -181,7 +181,6 @@ if (isset($_SESSION['erroLogin']) && $_SESSION['erroLogin']) {
         document.addEventListener("DOMContentLoaded", function () {
             const form = document.getElementById("loginForm");
             const nomeInput = document.getElementById("nome");
-            const manterLoginCheckbox = document.getElementById("termos");
 
             // Tenta recuperar o nome do usuário do localStorage
             const nomeArmazenado = localStorage.getItem("nomeUsuario");
