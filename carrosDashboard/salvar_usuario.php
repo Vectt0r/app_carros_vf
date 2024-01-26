@@ -3,8 +3,8 @@
 // Coletar dados do formulário
 $nome = $_POST["nomeNovoUsuario"];
 $nome_completo = $_POST["nomeCompletoNovoUsuario"];
-//$senha = $_POST["senhaNovoUsuario"];
-$senha = password_hash($_POST["senhaNovoUsuario"],PASSWORD_DEFAULT);
+$senha = $_POST["senhaNovoUsuario"];
+//$senha = password_hash($_POST["senhaNovoUsuario"],PASSWORD_DEFAULT);
 $setor = $_POST["setorNovoUsuario"];
 $telefone = $_POST["telefoneNovoUsuario"];
 
