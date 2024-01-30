@@ -60,7 +60,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
 
 <head>
     <meta charset="utf-8">
-    <title>Controle de Veiculos</title>
+    <title>Controle de Veículos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -114,6 +114,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             color: #155724;
             border-color: #c3e6cb;
         }
+
     </style>
 </head>
 
@@ -138,8 +139,14 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="veiculos.php">
+                    <a class="nav-link" href="">
                         <i class="material-icons">directions_car</i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <i class="material-icons">map</i>
                     </a>
                 </li>
             </ul>
@@ -166,8 +173,8 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         </form>
     </form>
 
-        <div style="height: 680px; overflow-y: auto;">
-            <table class="table table-striped table-hover custom-table">
+    <div>
+        <table class="table table-striped table-hover custom-table">
             <thead>
             <tr>
                 <th style="white-space: nowrap;">ID</th>
@@ -187,8 +194,8 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <td style="white-space: nowrap;"><?php echo $dados['telefone']; ?></td>
                     <td style="white-space: nowrap;"><?php echo $dados['setor']; ?></td>
                     <td style="white-space: nowrap;">
-                        <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Visualizar</a>
-                        <a href="#" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="#" class="btn btn-primary btn-sm btn-visualizar" data-toggle="modal" data-target="#modalVisualizarUsuario" data-id="<?php echo $dados['id']; ?>">Visualizar</a>
+                        <a href="#" class="btn btn-warning btn-sm btn-editar" data-toggle="modal" data-target="#modalEditarUsuario" data-id="<?php echo $dados['id']; ?>">Editar</a>
                         <a href="#" class="btn btn-danger btn-sm">Excluir</a>
                     </td>
                 </tr>
@@ -260,78 +267,213 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             </div>
         </div>
     </div>
-    <!--    //MODAL CADASTRAR-->
+    <!--//MODAL CADASTRAR-->
 
-    <!--    //MODAL VIZUALIZAR-->
-<!--    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog" role="document">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="modal-title" id="exampleModalLabel"> Usuario 'X' </h5>-->
-<!--                    <button type="button" class="close" data-dismiss="modal" xaria-label="Fechar">-->
-<!--                        <span aria-hidden="true">&times;</span>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                    <div class="modal-body">-->
-<!--                        <form id="formAdicionarUsuario" action="salvar_usuario.php" method="post">-->
-<!--                            <div class="form-row">-->
-<!--                                <div class="form-group col-md-6">-->
-<!--                                    <label for="nomeNovoUsuario">Usuario</label>-->
-<!--                                    <input type="text" class="form-control" id="nomeNovoUsuario" placeholder="">-->
-<!--                                </div>-->
-<!--                                <div class="form-group col-md-6">-->
-<!--                                    <label for="nomeCompletoNovoUsuario">Nome Completo</label>-->
-<!--                                    <input type="text" class="form-control" id="nomeCompletoNovoUsuario" placeholder="">-->
-<!--                                </div>-->
-<!--                                <div class="form-group col-md-6">-->
-<!--                                    <label for="senhaNovoUsuario">Senha</label>-->
-<!--                                    <input type="password" class="form-control" id="senhaNovoUsuario" placeholder="">-->
-<!--                                </div>-->
-<!---->
-<!--                                <div class="form-group col-md-6">-->
-<!--                                    <label for="ConfirmarsenhaNovoUsuario">Confirmar a Senha</label>-->
-<!--                                    <input type="password" class="form-control" id="ConfirmarsenhaNovoUsuario" placeholder="">-->
-<!--                                </div>-->
-<!--                                <div class="form-group col-md-6">-->
-<!--                                    <label for="setorNovoUsuario">Setor</label>-->
-<!--                                    <select id="setorNovoUsuario" class="form-control">-->
-<!--                                        <option selected>Administração</option>-->
-<!--                                        <option>Infraestrutura</option>-->
-<!--                                        <option>Suporte</option>-->
-<!--                                        <option>Instalaçãoo</option>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                                <div class="form-group col-md-6">-->
-<!--                                    <label for="telefoneNovoUsuario">Telefone</label>-->
-<!--                                    <input type="text" class="form-control" id="telefoneNovoUsuario" placeholder="">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-    <!--    //MODAL VIZUALIZAR-->
+    <!--//MODAL VIZUALISAR-->
+    <div class="modal fade" id="modalVisualizarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalVisualizarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalVisualizarUsuarioLabel">Detalhes do Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="visualizarUsuarioBody">
+                    <!-- Os detalhes do usuário serão inseridos aqui dinamicamente via AJAX -->
+                    <form id="formVisualizarUsuario" action="#" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="userName">Nome de Usuário</label>
+                                <input type="text" class="form-control" id="userName" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="userFullName">Nome Completo</label>
+                                <input type="text" class="form-control" id="userFullName" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="userSector">Setor</label>
+                                <input type="text" class="form-control" id="userSector" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="userPhone">Telefone</label>
+                                <input type="text" class="form-control" id="userPhone" readonly>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//MODAL VIZUALIZAR-->
+
+    <!--//MODAL EDITAR-->
+    <div class="modal fade" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalEditarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarUsuarioLabel">Editar Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="editarUsuarioBody">
+                    <form id="formEditarUsuario" action="#" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="editUserName">Nome de Usuário</label>
+                                <input type="text" class="form-control" id="editUserName" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="editUserFullName">Nome Completo</label>
+                                <input type="text" class="form-control" id="editUserFullName" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="editUserPassword">Senha</label>
+                                <input type="password" class="form-control" id="editUserPassword">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="editUserConfirmPassword">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="editUserConfirmPassword">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="editUserSector">Setor</label>
+                                <select id="editUserSector" class="form-control">
+                                    <option selected>Administração</option>
+                                    <option>Infraestrutura</option>
+                                    <option>Suporte</option>
+                                    <option>Instalação</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="editUserPhone">Telefone</label>
+                                <input type="text" class="form-control" id="editUserPhone">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary btn-salvar-edicao" data-id="<?php echo $dados['id']; ?>">Salvar Edição</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//MODAL EDITAR-->
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 <script>
     $(document).ready(function () {
         $('#btnAtualizarTabela').click(function () {
             location.reload();
         });
 
+        $('.btn-visualizar').click(function () {
+            var userId = $(this).data('id');
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:3000/api/getCarroUsuario/' + userId,
+                success: function (response) {
+                    $('#userName').val(response.nome);
+                    $('#userFullName').val(response.nome_completo);
+                    $('#userPassword').val(response.senha);
+                    $('#userConfirmPassword').val(response.senha);
+                    $('#userSector').val(response.setor);
+                    $('#userPhone').val(response.telefone);
+
+                    $('#modalVisualizarUsuario').modal('show');
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        $('.btn-editar').click(function () {
+            var userId = $(this).data('id');
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:3000/api/getCarroUsuario/' + userId,
+                success: function (response) {
+                    $('#editUserName').val(response.nome);
+                    $('#editUserFullName').val(response.nome_completo);
+                    $('#editUserPassword').val(response.senha);
+                    $('#editUserConfirmPassword').val(response.senha);
+                    $('#editUserSector').val(response.setor);
+                    $('#editUserPhone').val(response.telefone);
+
+                    $('#modalEditarUsuario').modal('show');
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        $('.btn-salvar-edicao').click(function (event) {
+            event.preventDefault();
+            var userId = $(this).data('id');
+
+            if (typeof userId === 'undefined') {
+                console.error('userId não está definido.');
+                return;
+            }
+            var userId = $(this).data('id'); // Certifique-se de adicionar o atributo data-id ao botão "Salvar Edição"
+
+            // Obtenha os valores dos campos editados
+            var editUserName = $('#editUserName').val();
+            var editUserFullName = $('#editUserFullName').val();
+            var editUserPassword = $('#editUserPassword').val();
+            var editUserConfirmPassword = $('#editUserConfirmPassword').val();
+            var editUserSector = $('#editUserSector').val();
+            var editUserPhone = $('#editUserPhone').val();
+
+            //Confirmação e senha
+            if(editUserPassword != editUserConfirmPassword){
+                alert('As senhas digitadas não coincidem')
+                return;
+            }
+
+            console.log('Dados enviados para a API:', {
+                nome: editUserName,
+                nome_completo: editUserFullName,
+                senha: editUserPassword,
+                setor: editUserSector,
+                telefone: editUserPhone
+            });
+
+            // Submeter AJAX para a nova rota de atualização
+            $.ajax({
+                type: 'PUT',
+                url: 'http://localhost:3000/api/AtualizarUsuario/' + userId,
+                data: JSON.stringify({
+                    nome: editUserName,
+                    nome_completo: editUserFullName,
+                    senha: editUserPassword,
+                    setor: editUserSector,
+                    telefone: editUserPhone
+                }),
+                contentType: 'application/json',
+                success: function (response) {
+                    alert(response.message);
+                    $('#modalEditarUsuario').modal('hide');
+                    location.reload(); //recarrega a pagina automaticamente ao editar um novo usuario
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
         $('#formAdicionarUsuario').submit(function (event) {
             event.preventDefault();
-
-            //Obtenha os valores dos campos
             var nomeNovoUsuario = $('#nomeNovoUsuario').val();
             var nomeCompletoNovoUsuario = $('#nomeCompletoNovoUsuario').val();
             var senhaNovoUsuario = $('#senhaNovoUsuario').val();
@@ -369,6 +511,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     $('#modalAdicionarUsuario select').val('');
                     $('#modalAdicionarUsuario [type="text"]').val('');
                     $('#modalAdicionarUsuario').modal('hide');
+                    location.reload(); //recarrega a pagina automaticamente ao inserir um novo usuario
                 },
                 error: function (error) {
                     console.log(error);
@@ -376,7 +519,6 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             });
         });
     });
-
 </script>
 </body>
 </html>

@@ -109,6 +109,10 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             max-width: 1800px;
         }
 
+        .logo-impressao {
+            display: none;
+        }
+
         @media print {
             body {
                 overflow: hidden;
@@ -121,6 +125,14 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             .pagination,
             .form-inline {
                 display: none !important;
+            }
+
+            .logo-impressao {
+                display: block;
+                text-align: center;
+                margin-bottom: 20px;
+                max-width: 100%;
+                height: auto;
             }
         }
     </style>
@@ -146,7 +158,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="veiculos.php">
+                <a class="nav-link" href="">
                     <i class="material-icons">directions_car</i>
                 </a>
             </li>
@@ -167,7 +179,9 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         </ul>
     </div>
 </nav>
-
+<div class="logo-impressao">
+    <img src="imagens/logo_netcomet.png" alt="NetComet Logo" style="height: 50px;">
+</div>
 <div class="container">
     <form class="form-inline mb-3">
         <div class="form-group mr-2">
@@ -177,11 +191,13 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         <button type="submit" class="btn btn-primary">Buscar</button>
         <form class="form-inline mb-3 ml-auto">
             <button type="button" class="btn btn-primary ml-2" id="btnAtualizarTabela">Atualizar Tabela</button>
-        <!--<button type="button" class="btn btn-secondary ml-2 btn-imprimir-tabela btn-imprimir">Imprimir Tabela</button> FUTURO-->
+        <button type="button" class="btn btn-secondary ml-2 btn-imprimir-tabela btn-imprimir">Imprimir Tabela</button>
         </form>
     </form>
 
-    <div style="height: 680px; overflow-y: auto;">
+<!--  ADICIONAR SCROLL INTERNO <div style="height: 680px; overflow-y: auto;">-->
+
+    <div>
         <table class="table table-striped table-hover custom-table">
             <thead>
             <tr>
@@ -246,7 +262,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             $('#btnAtualizarTabela').click(function () {
                 location.reload();
             });
-            
+
             //Desabilitado
             $('.btn-imprimir-tabela').click(function () {
                 window.print();

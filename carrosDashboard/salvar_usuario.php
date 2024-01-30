@@ -1,5 +1,4 @@
 <?php
-
 // Coletar dados do formulário
 $nome = $_POST["nomeNovoUsuario"];
 $nome_completo = $_POST["nomeCompletoNovoUsuario"];
@@ -47,7 +46,7 @@ if (curl_errno($ch)) {
     echo 'Erro na requisição cURL: ' . curl_error($ch);
 } else {
     // A resposta da API está armazenada em $resultado
-    echo 'Resposta da API: ' . $resultado;
+    echo 'Salvo com Sucesso';
 }
 
 // Fecha a sessão cURL
