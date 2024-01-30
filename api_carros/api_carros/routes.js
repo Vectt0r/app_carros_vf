@@ -151,6 +151,45 @@ router.post('/CadastrarNovoUsuario', async (req, res) => {
   }
 });
 
+
+
+router.put('/AtualizarUsuario/:id', async (req, res) => {
+  const userId = req.params.id;
+  const { nome, nome_completo, senha, setor, telefone } = req.body;
+
+  console.log('Dados recebidos no servidor para atualização:', { nome, nome_completo, senha, setor, telefone }); // Certifique-se de que esses valores não sejam undefined
+
+  try {
+      let query;
+      let params;
+
+      // Verifica se a senha foi fornecida para decidir se a senha deve ser atualizada no banco de dados
+      if (senha) {
+          const hashedSenha = await bcrypt.hash(senha, saltRounds);
+          query = 'UPDATE carros_usuarios SET nome = ?, nome_completo = ?, setor = ?, telefone = ?, senha = ? WHERE id = ?';
+          params = [nome, nome_completo, setor, telefone, hashedSenha, userId];
+      } else {
+          query = 'UPDATE carros_usuarios SET nome = ?, nome_completo = ?, setor = ?, telefone = ? WHERE id = ?';
+          params = [nome, nome_completo, setor, telefone, userId];
+      }
+
+      connection.query(query, params, (error, results) => {
+          if (error) {
+              console.error('Erro ao atualizar dados no banco de dados:', error);
+              res.status(500).json({ error: 'Erro ao atualizar dados no banco de dados' });
+          } else {
+              res.json({ success: true, message: 'Dados atualizados com sucesso' });
+          }
+      });
+  } catch (error) {
+      console.error('Erro ao hashear senha:', error);
+      res.status(500).json({ error: 'Erro ao hashear senha' });
+  }
+});
+
+
+
+
 //Rota para autenticar um usuário
 router.post('/login', async (req, res) => {
   const { nome, senha } = req.body;

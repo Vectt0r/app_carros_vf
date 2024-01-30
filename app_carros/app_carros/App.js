@@ -16,7 +16,7 @@ const App = () => {
           name="Login"
           component={LoginScreen}
           options={{
-            headerShown: false, // Oculta o cabeçaalho apenas na tela de login
+            headerShown: false, // Oculta o cabeçalho apenas na tela de login
           }}
         />
         <Stack.Screen name="Home" component={HomeScreen} />
