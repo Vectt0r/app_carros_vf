@@ -50,7 +50,7 @@ const CarForm = ({}) => {
   }, []);
 
   useEffect(() => {
-    // Verifica se todos os campos obrigatórios estão preenchidos
+    // Verifica se todos os campos obrigatorios est�o preenchidos
     setIsFormValid(
       nomeFuncionario && 
       placaCarro && 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-//Inicio de SessÃ£o
+//Inicio de Sessão
 if (!isset($_SESSION["nome"])) {
     header("Location: index.php");
     exit();
@@ -29,7 +29,7 @@ if ($dadosReais === false) {
     die('Erro ao obter dados da API');
 }
 
-//PaginaÃ§Ã£o
+//Paginação
 $resultadosPorPagina = 20;
 $totalRegistros = count($dadosReais);
 $totalPaginas = ceil($totalRegistros / $resultadosPorPagina);
@@ -44,27 +44,27 @@ $dadosFiltrados = [];
 //Buscar
 if (!empty($termoBusca)) {
     foreach ($dadosReais as $dados) {
-        // Verifica se o termo de busca estÃ¡ presente no 'nome_funcionario'
+        // Verifica se o termo de busca está presente no 'nome_funcionario'
         if (isset($dados['nome_funcionario']) && $dados['nome_funcionario'] !== null && stripos($dados['nome_funcionario'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
 
-        // Verifica se o termo de busca estÃ¡ presente na 'placa'
+        // Verifica se o termo de busca está presente na 'placa'
         if (isset($dados['placa']) && $dados['placa'] !== null && stripos($dados['placa'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
 
-        // Verifica se o termo de busca estÃ¡ presente na 'cidade'
+        // Verifica se o termo de busca está presente na 'cidade'
         if (isset($dados['cidade']) && $dados['cidade'] !== null && stripos($dados['cidade'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
 
-        // Verifica se o termo de busca estÃ¡ presente na 'data'
+        // Verifica se o termo de busca está presente na 'data'
         if (isset($dados['data']) && $dados['data'] !== null && stripos($dados['data'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
 
-        // Verifica se o termo de busca estÃ¡ presente na 'localidade'
+        // Verifica se o termo de busca está presente na 'localidade'
         if (isset($dados['localidade']) && $dados['localidade'] !== null && stripos($dados['localidade'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
@@ -134,6 +134,11 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                 max-width: 100%;
                 height: auto;
             }
+
+            .custom-table th:last-child,
+            .custom-table td:last-child {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -195,24 +200,24 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         </form>
     </form>
 
-<!--  ADICIONAR SCROLL INTERNO <div style="height: 680px; overflow-y: auto;">-->
-
+    <!--ADICIONAR SCROLL INTERNO <div style="height: 680px; overflow-y: auto;">-->
     <div>
         <table class="table table-striped table-hover custom-table">
             <thead>
             <tr>
                 <th style="white-space: nowrap;">ID</th>
-                <th style="white-space: nowrap;">FuncionÃ¡rio</th>
+                <th style="white-space: nowrap;">Funcionário</th>
                 <th style="white-space: nowrap;">Placa</th>
                 <th style="white-space: nowrap;">KM Inicial</th>
                 <th style="white-space: nowrap;">KM Final</th>
-                <th style="white-space: nowrap;">SaÃ­da</th>
+                <th style="white-space: nowrap;">Saída</th>
                 <th style="white-space: nowrap;">Chegada</th>
                 <th style="white-space: nowrap;">Data</th>
                 <th style="white-space: nowrap;">Cidade</th>
                 <th style="white-space: nowrap;">Localidade</th>
                 <th style="white-space: nowrap;">Cidade 2</th>
                 <th style="white-space: nowrap;">Localidade 2</th>
+                <th style="white-space: nowrap;">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -238,11 +243,89 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <td><?php echo $dados['localidade']; ?></td>
                     <td><?php echo $dados['cidade_02']; ?></td>
                     <td><?php echo $dados['localidade_02']; ?></td>
+                    <td style="white-space: nowrap;">
+                        <a href="#" class="btn btn-primary btn-sm btn-editar" data-toggle="modal" data-target="#modalEditarUsuario" data-id="<?php echo $dados['id']; ?>"><i class="material-icons">edit</i></a>
+                        <a href="#" class="btn btn-primary btn-sm btn-visualizar" data-toggle="modal" data-target=".bd-example-modal-lg" data-id="<?php echo $dados['id']; ?>"><i class="material-icons">search</i></a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+
+    <!--//Modal Vizualizar-->
+    <div class="modal fade bd-example-modal-lg" id='ModalVisualizar' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalhes da Corrida</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">Funcionário:</label>
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="" readonly>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputPassword4">Numero do Veiculo:</label>
+                                <input type="password" class="form-control" id="inputPassword4" placeholder="" readonly>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputPassword4">Placa:</label>
+                                <input type="password" class="form-control" id="inputPassword4" placeholder="" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="inputAddress">KM Inicial:</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="" readonly>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputAddress2">KM Final:</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="" readonly>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputAddress2">Hora da Saida:</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="" readonly>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputAddress2">Hora da Chegada:</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Cidade:</label>
+                                <input type="text" class="form-control" id="inputCity" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEstado">Localidade:</label>
+                                <input type="text" class="form-control" id="inputCity" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Cidade 2:</label>
+                                <input type="text" class="form-control" id="inputCity" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEstado">Localidade 2:</label>
+                                <input type="text" class="form-control" id="inputCity" readonly>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//Modal Vizualizar-->
 
     <div>
         <ul class="pagination justify-content-center" style="margin-top: 7px;">
@@ -263,10 +346,23 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                 location.reload();
             });
 
-            //Desabilitado
             $('.btn-imprimir-tabela').click(function () {
                 window.print();
             });
+
+            $('#btn-visualizar').click(function () {
+
+                //LOGICA DE VISUALIZAR
+
+                $('#ModalVisualizar').trigger('focus')
+            })
+
+            $('#btn-editar').click(function () {
+
+                //LOGICA DE EDIÇÃO
+
+                $('#ModalEditar').trigger('focus')
+            })
         });
     </script>
 </body>

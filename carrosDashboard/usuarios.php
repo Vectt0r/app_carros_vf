@@ -33,7 +33,6 @@ $totalPaginas = ceil($totalRegistros / $resultadosPorPagina);
 
 $paginaAtual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 $indiceInicial = ($paginaAtual - 1) * $resultadosPorPagina;
-$dadosPaginaAtual = array_slice($dadosReais, $indiceInicial, $resultadosPorPagina);
 
 $termoBusca = isset($_GET['busca']) ? $_GET['busca'] : '';
 $dadosFiltrados = [];
@@ -60,7 +59,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
 
 <head>
     <meta charset="utf-8">
-    <title>Controle de Ve√≠culos</title>
+    <title>Controle de VeÌculos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -114,53 +113,52 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             color: #155724;
             border-color: #c3e6cb;
         }
-
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #146dc5!important">
-        <a class="navbar-brand" href="#">
-            <img src="imagens/logo_netcomet.png" alt="NetComet Logo" style="height: 50px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav" >
-            <ul class="navbar-nav ml-auto" style="padding-right: 110px;">
-                <li class="nav-item">
-                    <a class="nav-link" href="dashboard.php">
-                        <i class="material-icons">home</i> <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="usuarios.php">
-                        <i class="material-icons">person</i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <i class="material-icons">directions_car</i>
-                    </a>
-                </li>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #146dc5!important">
+    <a class="navbar-brand" href="#">
+        <img src="imagens/logo_netcomet.png" alt="NetComet Logo" style="height: 50px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto" style="padding-right: 110px;">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.php">
+                    <i class="material-icons">home</i> <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="usuarios.php">
+                    <i class="material-icons">person</i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="material-icons">directions_car</i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="material-icons">map</i>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">
+                    <i class="material-icons">exit_to_app</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <i class="material-icons">map</i>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.php">
-                        <i class="material-icons">exit_to_app</i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container">
+<div class="container">
     <form class="form-inline mb-3">
         <div class="form-group mr-2">
             <label for="busca" class="sr-only">Buscar</label>
@@ -169,7 +167,8 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         <button type="submit" class="btn btn-primary">Buscar</button>
         <form class="form-inline mb-3 ml-auto">
             <button type="button" class="btn btn-primary ml-2" id="btnAtualizarTabela">Atualizar Tabela</button>
-            <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#modalAdicionarUsuario" style="margin-left: 7px;">Adicionar Us√∫ario</button>
+            <button type="button" class="btn btn-success ml-2" data-toggle="modal"
+                    data-target="#modalAdicionarUsuario" style="margin-left: 7px;">Adicionar Usu·rio</button>
         </form>
     </form>
 
@@ -178,11 +177,11 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             <thead>
             <tr>
                 <th style="white-space: nowrap;">ID</th>
-                <th style="white-space: nowrap;">Us√∫ario</th>
+                <th style="white-space: nowrap;">Usu·rio</th>
                 <th style="white-space: nowrap;">Nome Completo</th>
                 <th style="white-space: nowrap;">Telefone</th>
                 <th style="white-space: nowrap;">Setor</th>
-                <th style="white-space: nowrap;width: 0px;">A√ß√µes</th>
+                <th style="white-space: nowrap;width: 0px;">AÁıes</th>
             </tr>
             </thead>
             <tbody>
@@ -194,9 +193,17 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <td style="white-space: nowrap;"><?php echo $dados['telefone']; ?></td>
                     <td style="white-space: nowrap;"><?php echo $dados['setor']; ?></td>
                     <td style="white-space: nowrap;">
-                        <a href="#" class="btn btn-primary btn-sm btn-visualizar" data-toggle="modal" data-target="#modalVisualizarUsuario" data-id="<?php echo $dados['id']; ?>">Visualizar</a>
-                        <a href="#" class="btn btn-warning btn-sm btn-editar" data-toggle="modal" data-target="#modalEditarUsuario" data-id="<?php echo $dados['id']; ?>">Editar</a>
-                        <a href="#" class="btn btn-danger btn-sm">Excluir</a>
+
+                        <!--BOT’ES DE AC√O-->
+                        <a href="#" class="btn btn-primary btn-sm btn-editar" data-toggle="modal"
+                           data-target="#modalEditarUsuario_<?php echo $dados['id']; ?>"
+                           data-id="<?php echo $dados['id']; ?>"><i class="material-icons">edit</i></a>
+<!--                        <a href="#" class="btn btn-primary btn-sm btn-visualizar" data-toggle="modal"-->
+<!--                           data-target="#modalVisualizarUsuario_--><?php //echo $dados['id']; ?><!--"-->
+<!--                           data-id="--><?php //echo $dados['id']; ?><!--"><i class="material-icons">visibility</i></a>-->
+                        <a href="#" class="btn btn-primary btn-sm"><i class="material-icons">delete</i></a>
+                        <!--BOT’ES DE AC√O-->
+
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -208,18 +215,20 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         <ul class="pagination justify-content-center" style="margin-top: 7px;">
             <?php for ($i = 1; $i <= $totalPaginas; $i++) : ?>
                 <li class="page-item <?php echo ($i == $paginaAtual) ? 'active' : ''; ?>">
-                    <a class="page-link" href="?pagina=<?php echo $i . '&busca=' . urlencode($termoBusca); ?>"><?php echo $i; ?></a>
+                    <a class="page-link"
+                       href="?pagina=<?php echo $i . '&busca=' . urlencode($termoBusca); ?>"><?php echo $i; ?></a>
                 </li>
             <?php endfor; ?>
         </ul>
     </div>
 
-    <!--    //MODAL CADASTRAR-->
-    <div class="modal fade" id="modalAdicionarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalAdicionarUsuarioLabel" aria-hidden="true">
+    <!-- MODAL CADASTRAR -->
+    <div class="modal fade" id="modalAdicionarUsuario" tabindex="-1" role="dialog"
+         aria-labelledby="modalAdicionarUsuarioLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalAdicionarUsuarioLabel">Novo Usuario</h5>
+                    <h5 class="modal-title" id="modalAdicionarUsuarioLabel">Novo Usu·rio</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -228,63 +237,69 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <form id="formAdicionarUsuario" action="salvar_usuario.php" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="nomeNovoUsuario">Usuario</label>
-                                <input type="text" class="form-control" id="nomeNovoUsuario" placeholder="">
+                                <label for="nomeNovoUsuario">Usu·rio</label>
+                                <input type="text" class="form-control" id="nomeNovoUsuario" name="nomeNovoUsuario"
+                                       placeholder="">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="nomeCompletoNovoUsuario">Nome Completo</label>
-                                <input type="text" class="form-control" id="nomeCompletoNovoUsuario" placeholder="">
+                                <input type="text" class="form-control" id="nomeCompletoNovoUsuario"
+                                       name="nomeCompletoNovoUsuario" placeholder="">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="senhaNovoUsuario">Senha</label>
-                                <input type="password" class="form-control" id="senhaNovoUsuario" placeholder="">
+                                <input type="password" class="form-control" id="senhaNovoUsuario"
+                                       name="senhaNovoUsuario" placeholder="">
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="ConfirmarsenhaNovoUsuario">Confirmar a Senha</label>
-                                <input type="password" class="form-control" id="ConfirmarsenhaNovoUsuario" placeholder="">
+                                <label for="ConfirmarsenhaNovoUsuario">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="ConfirmarsenhaNovoUsuario"
+                                       name="ConfirmarsenhaNovoUsuario" placeholder="">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="setorNovoUsuario">Setor</label>
-                                <select id="setorNovoUsuario" class="form-control">
-                                    <option selected>Administra√ß√£o</option>
+                                <select id="setorNovoUsuario" name="setorNovoUsuario" class="form-control">
+                                    <option selected>AdministraÁ„o</option>
                                     <option>Infraestrutura</option>
                                     <option>Suporte</option>
-                                    <option>Instala√ß√£o</option>
+                                    <option>InstalaÁ„o</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="telefoneNovoUsuario">Telefone</label>
-                                <input type="text" class="form-control" id="telefoneNovoUsuario" placeholder="">
+                                <input type="text" class="form-control" id="telefoneNovoUsuario"
+                                       name="telefoneNovoUsuario" placeholder="">
                             </div>
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
                     </form>
-                </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--//MODAL CADASTRAR-->
+    <!-- MODAL CADASTRAR -->
 
-    <!--//MODAL VIZUALISAR-->
-    <div class="modal fade" id="modalVisualizarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalVisualizarUsuarioLabel" aria-hidden="true">
+    <!-- MODAL VISUALIZAR -->
+    <div class="modal fade" id="modalVisualizarUsuario" tabindex="-1" role="dialog"
+         aria-labelledby="modalVisualizarUsuarioLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalVisualizarUsuarioLabel">Detalhes do Usu√°rio</h5>
+                    <h5 class="modal-title" id="modalVisualizarUsuarioLabel">Detalhes do Usu·rio</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" id="visualizarUsuarioBody">
-                    <!-- Os detalhes do usu√°rio ser√£o inseridos aqui dinamicamente via AJAX -->
+                    <!-- Os detalhes do usu·rio ser„o inseridos aqui dinamicamente via AJAX -->
                     <form id="formVisualizarUsuario" action="#" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="userName">Nome de Usu√°rio</label>
+                                <label for="userName">Nome de Usu·rio</label>
                                 <input type="text" class="form-control" id="userName" readonly>
                             </div>
                             <div class="form-group col-md-6">
@@ -308,14 +323,14 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             </div>
         </div>
     </div>
-    <!--//MODAL VIZUALIZAR-->
+    <!-- MODAL VISUALIZAR -->
 
-    <!--//MODAL EDITAR-->
+    <!-- MODAL EDITAR -->
     <div class="modal fade" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalEditarUsuarioLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditarUsuarioLabel">Editar Usu√°rio</h5>
+                    <h5 class="modal-title" id="modalEditarUsuarioLabel">Editar Usu·rio</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -324,7 +339,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <form id="formEditarUsuario" action="#" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="editUserName">Nome de Usu√°rio</label>
+                                <label for="editUserName">Nome de Usu·rio</label>
                                 <input type="text" class="form-control" id="editUserName" readonly>
                             </div>
                             <div class="form-group col-md-6">
@@ -333,192 +348,200 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="editUserPassword">Senha</label>
-                                <input type="password" class="form-control" id="editUserPassword">
+                                <input type="password" class="form-control" id="editUserPassword" name="editUserPassword" placeholder="Nova Senha" readonly >
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="editUserConfirmPassword">Confirmar Senha</label>
-                                <input type="password" class="form-control" id="editUserConfirmPassword">
+                                <input type="password" class="form-control" id="editUserConfirmPassword" name="editUserConfirmPassword" placeholder="Repetir Senha" readonly>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="editUserSector">Setor</label>
-                                <select id="editUserSector" class="form-control">
-                                    <option selected>Administra√ß√£o</option>
+                                <select id="editUserSector" name="editUserSector" class="form-control">
+                                    <option selected>AdministraÁ„o</option>
                                     <option>Infraestrutura</option>
                                     <option>Suporte</option>
-                                    <option>Instala√ß√£o</option>
+                                    <option>InstalaÁ„o</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="editUserPhone">Telefone</label>
-                                <input type="text" class="form-control" id="editUserPhone">
+                                <input type="text" class="form-control" id="editUserPhone" name="editUserPhone">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-primary btn-salvar-edicao" data-id="<?php echo $dados['id']; ?>">Salvar Edi√ß√£o</button>
+                            <button type="button" class="btn btn-danger btn-enable-edit-password">Editar Senha</button>
+                            <button type="button" class="btn btn-success btn-salvar-edicao" data-id="">Salvar EdiÁ„o</button>
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!--//MODAL EDITAR-->
+    <!-- MODAL EDITAR -->
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#btnAtualizarTabela').click(function () {
-            location.reload();
-        });
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnAtualizarTabela').click(function () {
+                location.reload();
+            });
 
-        $('.btn-visualizar').click(function () {
-            var userId = $(this).data('id');
+            $('#formAdicionarUsuario').submit(function (event) {
+                event.preventDefault();
+                var nomeNovoUsuario = $('#nomeNovoUsuario').val();
+                var nomeCompletoNovoUsuario = $('#nomeCompletoNovoUsuario').val();
+                var senhaNovoUsuario = $('#senhaNovoUsuario').val();
+                var ConfirmarsenhaNovoUsuario = $('#ConfirmarsenhaNovoUsuario').val();
+                var setorNovoUsuario = $('#setorNovoUsuario').val();
+                var telefoneNovoUsuario = $('#telefoneNovoUsuario').val();
 
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:3000/api/getCarroUsuario/' + userId,
-                success: function (response) {
-                    $('#userName').val(response.nome);
-                    $('#userFullName').val(response.nome_completo);
-                    $('#userPassword').val(response.senha);
-                    $('#userConfirmPassword').val(response.senha);
-                    $('#userSector').val(response.setor);
-                    $('#userPhone').val(response.telefone);
-
-                    $('#modalVisualizarUsuario').modal('show');
-                },
-                error: function (error) {
-                    console.log(error);
+                //Verifique se todos os campos est„o preenchidos
+                if (!nomeNovoUsuario || !nomeCompletoNovoUsuario || !senhaNovoUsuario || !setorNovoUsuario || !telefoneNovoUsuario) {
+                    alert('Por favor, preencha todos os campos antes de enviar.');
+                    return;
                 }
-            });
-        });
 
-        $('.btn-editar').click(function () {
-            var userId = $(this).data('id');
-
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:3000/api/getCarroUsuario/' + userId,
-                success: function (response) {
-                    $('#editUserName').val(response.nome);
-                    $('#editUserFullName').val(response.nome_completo);
-                    $('#editUserPassword').val(response.senha);
-                    $('#editUserConfirmPassword').val(response.senha);
-                    $('#editUserSector').val(response.setor);
-                    $('#editUserPhone').val(response.telefone);
-
-                    $('#modalEditarUsuario').modal('show');
-                },
-                error: function (error) {
-                    console.log(error);
+                //ConfirmaÁ„o e senha
+                if(ConfirmarsenhaNovoUsuario != senhaNovoUsuario){
+                    alert('As senhas digitadas n√£o coincidem')
+                    return;
                 }
-            });
-        });
 
-        $('.btn-salvar-edicao').click(function (event) {
-            event.preventDefault();
-            var userId = $(this).data('id');
-
-            if (typeof userId === 'undefined') {
-                console.error('userId n√£o est√° definido.');
-                return;
-            }
-            var userId = $(this).data('id'); // Certifique-se de adicionar o atributo data-id ao bot√£o "Salvar Edi√ß√£o"
-
-            // Obtenha os valores dos campos editados
-            var editUserName = $('#editUserName').val();
-            var editUserFullName = $('#editUserFullName').val();
-            var editUserPassword = $('#editUserPassword').val();
-            var editUserConfirmPassword = $('#editUserConfirmPassword').val();
-            var editUserSector = $('#editUserSector').val();
-            var editUserPhone = $('#editUserPhone').val();
-
-            //Confirma√ß√£o e senha
-            if(editUserPassword != editUserConfirmPassword){
-                alert('As senhas digitadas n√£o coincidem')
-                return;
-            }
-
-            console.log('Dados enviados para a API:', {
-                nome: editUserName,
-                nome_completo: editUserFullName,
-                senha: editUserPassword,
-                setor: editUserSector,
-                telefone: editUserPhone
+                //Submeter AJAX se todos os campos estiverem preenchidos
+                $.ajax({
+                    type: 'POST',
+                    url: 'salvar_usuario.php',
+                    data: {
+                        nomeNovoUsuario: nomeNovoUsuario,
+                        nomeCompletoNovoUsuario: nomeCompletoNovoUsuario,
+                        senhaNovoUsuario: senhaNovoUsuario,
+                        setorNovoUsuario: setorNovoUsuario,
+                        telefoneNovoUsuario: telefoneNovoUsuario
+                    },
+                    success: function (response) {
+                        alert(response);
+                        $('#modalAdicionarUsuario input[type="text"]').val('');
+                        $('#modalAdicionarUsuario input[type="password"]').val('');
+                        $('#modalAdicionarUsuario select').val('');
+                        $('#modalAdicionarUsuario [type="text"]').val('');
+                        $('#modalAdicionarUsuario').modal('hide');
+                        location.reload(); //recarrega a pagina automaticamente ao inserir um novo usuario
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
             });
 
-            // Submeter AJAX para a nova rota de atualiza√ß√£o
-            $.ajax({
-                type: 'PUT',
-                url: 'http://localhost:3000/api/AtualizarUsuario/' + userId,
-                data: JSON.stringify({
-                    nome: editUserName,
-                    nome_completo: editUserFullName,
-                    senha: editUserPassword,
-                    setor: editUserSector,
-                    telefone: editUserPhone
-                }),
-                contentType: 'application/json',
-                success: function (response) {
-                    alert(response.message);
-                    $('#modalEditarUsuario').modal('hide');
-                    location.reload(); //recarrega a pagina automaticamente ao editar um novo usuario
-                },
-                error: function (error) {
-                    console.log(error);
+            $('.btn-visualizar').click(function () {
+                var userId = $(this).data('id');
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:3000/api/getCarroUsuario/' + userId,
+                    success: function (response) {
+                        $('#userName').val(response.nome);
+                        $('#userFullName').val(response.nome_completo);
+                        $('#userSector').val(response.setor);
+                        $('#userPhone').val(response.telefone);
+
+                        $('#modalVisualizarUsuario').modal('show');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            $('.btn-editar').click(function () {
+                var userId = $(this).data('id');
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:3000/api/getCarroUsuario/' + userId,
+                    success: function (response) {
+                        // Preencher os campos do formul·rio com os dados do usu·rio
+                        $('#editUserName').val(response.nome);
+                        $('#editUserFullName').val(response.nome_completo);
+                        // $('#editUserPassword').val(response.senha.slice(0, 10)); // Corrigido o ID aqui
+                        // $('#editUserConfirmPassword').val(response.senha.slice(0, 10));
+                        $('#editUserSector').val(response.setor);
+                        $('#editUserPhone').val(response.telefone);
+
+                        // Atualizar o ID do bot„o de salvar ediÁ„o
+                        $('.btn-salvar-edicao').data('id', userId);
+
+                        // Exibir o modal de ediÁ„o
+                        $('#modalEditarUsuario').modal('show');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+
+            $('.btn-salvar-edicao').click(function (event) {
+                event.preventDefault();
+                var userId = $(this).data('id');
+
+                // Obtenha os valores dos campos editados
+                var editUserPassword = $('#editUserPassword').val();
+                var editUserConfirmPassword = $('#editUserConfirmPassword').val();
+                var editUserSector = $('#editUserSector').val();
+                var editUserPhone = $('#editUserPhone').val();
+
+                // Trate os valores nulos ou vazios antes de enviar a atualizaÁ„o
+                var requestData = {
+                    senha: editUserPassword !== '' ? editUserPassword : null,
+                    setor: editUserSector !== '' ? editUserSector : null,
+                    telefone: editUserPhone !== '' ? editUserPhone : null
+                };
+
+                // Adicione os campos de nome e nome completo se estiverem presentes
+                var editUserName = $('#editUserName').val();
+                var editUserFullName = $('#editUserFullName').val();
+
+                if (editUserName) {
+                    requestData.nome = editUserName;
                 }
-            });
-        });
 
-        $('#formAdicionarUsuario').submit(function (event) {
-            event.preventDefault();
-            var nomeNovoUsuario = $('#nomeNovoUsuario').val();
-            var nomeCompletoNovoUsuario = $('#nomeCompletoNovoUsuario').val();
-            var senhaNovoUsuario = $('#senhaNovoUsuario').val();
-            var ConfirmarsenhaNovoUsuario = $('#ConfirmarsenhaNovoUsuario').val();
-            var setorNovoUsuario = $('#setorNovoUsuario').val();
-            var telefoneNovoUsuario = $('#telefoneNovoUsuario').val();
-
-            //Verifique se todos os campos est√£o preenchidos
-            if (!nomeNovoUsuario || !nomeCompletoNovoUsuario || !senhaNovoUsuario || !setorNovoUsuario || !telefoneNovoUsuario) {
-                alert('Por favor, preencha todos os campos antes de enviar.');
-                return;
-            }
-
-            //Confirma√ß√£o e senha
-            if(ConfirmarsenhaNovoUsuario != senhaNovoUsuario){
-                alert('As senhas digitadas n√£o coincidem')
-                return;
-            }
-
-            //Submeter AJAX se todos os campos estiverem preenchidos
-            $.ajax({
-                type: 'POST',
-                url: 'salvar_usuario.php',
-                data: {
-                    nomeNovoUsuario: nomeNovoUsuario,
-                    nomeCompletoNovoUsuario: nomeCompletoNovoUsuario,
-                    senhaNovoUsuario: senhaNovoUsuario,
-                    setorNovoUsuario: setorNovoUsuario,
-                    telefoneNovoUsuario: telefoneNovoUsuario
-                },
-                success: function (response) {
-                    alert(response);
-                    $('#modalAdicionarUsuario input[type="text"]').val('');
-                    $('#modalAdicionarUsuario input[type="password"]').val('');
-                    $('#modalAdicionarUsuario select').val('');
-                    $('#modalAdicionarUsuario [type="text"]').val('');
-                    $('#modalAdicionarUsuario').modal('hide');
-                    location.reload(); //recarrega a pagina automaticamente ao inserir um novo usuario
-                },
-                error: function (error) {
-                    console.log(error);
+                if (editUserFullName) {
+                    requestData.nome_completo = editUserFullName;
                 }
+
+                // ConfirmaÁ„o de senha
+                if (editUserPassword !== editUserConfirmPassword) {
+                    alert('As senhas n„o coincidem.');
+                    return;
+                }
+
+                // Submeter AJAX para a nova rota de atualizaÁ„o
+                $.ajax({
+                    type: 'PUT',
+                    url: 'http://localhost:3000/api/AtualizarUsuario/' + userId,
+                    data: JSON.stringify(requestData),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        alert(response.message);
+                        $('#modalEditarUsuario').modal('hide');
+                        location.reload(); // Recarrega a p·gina automaticamente ao editar um novo usu·rio
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+
+            });
+
+            $('.btn-enable-edit-password').click(function () {
+                $('#editUserPassword, #editUserConfirmPassword').prop('readonly', false);
             });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
