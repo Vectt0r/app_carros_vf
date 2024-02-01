@@ -1,6 +1,6 @@
 <?php
 session_start();
-//Inicio de Sess„o
+//Inicio de Sess√£o
 if (!isset($_SESSION["nome"])) {
     header("Location: index.php");
     exit();
@@ -29,7 +29,7 @@ if ($dadosReais === false) {
     die('Erro ao obter dados da API');
 }
 
-//PaginaÁ„o
+//Pagina√ß√£o
 $resultadosPorPagina = 20;
 $totalRegistros = count($dadosReais);
 $totalPaginas = ceil($totalRegistros / $resultadosPorPagina);
@@ -44,27 +44,27 @@ $dadosFiltrados = [];
 //Buscar
 if (!empty($termoBusca)) {
     foreach ($dadosReais as $dados) {
-        // Verifica se o termo de busca est· presente no 'nome_funcionario'
+        // Verifica se o termo de busca est√° presente no 'nome_funcionario'
         if (isset($dados['nome_funcionario']) && $dados['nome_funcionario'] !== null && stripos($dados['nome_funcionario'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
 
-        // Verifica se o termo de busca est· presente na 'placa'
+        // Verifica se o termo de busca est√° presente na 'placa'
         if (isset($dados['placa']) && $dados['placa'] !== null && stripos($dados['placa'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
 
-        // Verifica se o termo de busca est· presente na 'cidade'
+        // Verifica se o termo de busca est√° presente na 'cidade'
         if (isset($dados['cidade']) && $dados['cidade'] !== null && stripos($dados['cidade'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
 
-        // Verifica se o termo de busca est· presente na 'data'
+        // Verifica se o termo de busca est√° presente na 'data'
         if (isset($dados['data']) && $dados['data'] !== null && stripos($dados['data'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
 
-        // Verifica se o termo de busca est· presente na 'localidade'
+        // Verifica se o termo de busca est√° presente na 'localidade'
         if (isset($dados['localidade']) && $dados['localidade'] !== null && stripos($dados['localidade'], $termoBusca) !== false) {
             $dadosFiltrados[] = $dados;
         }
@@ -206,18 +206,18 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             <thead>
             <tr>
                 <th style="white-space: nowrap;">ID</th>
-                <th style="white-space: nowrap;">Funcion·rio</th>
+                <th style="white-space: nowrap;">Funcion√°rio</th>
                 <th style="white-space: nowrap;">Placa</th>
                 <th style="white-space: nowrap;">KM Inicial</th>
                 <th style="white-space: nowrap;">KM Final</th>
-                <th style="white-space: nowrap;">SaÌda</th>
+                <th style="white-space: nowrap;">Sa√≠da</th>
                 <th style="white-space: nowrap;">Chegada</th>
                 <th style="white-space: nowrap;">Data</th>
                 <th style="white-space: nowrap;">Cidade</th>
                 <th style="white-space: nowrap;">Localidade</th>
                 <th style="white-space: nowrap;">Cidade 2</th>
                 <th style="white-space: nowrap;">Localidade 2</th>
-                <th style="white-space: nowrap;">AÁıes</th>
+                <th style="white-space: nowrap;">A√ß√µes</th>
             </tr>
             </thead>
             <tbody>
@@ -244,7 +244,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <td><?php echo $dados['cidade_02']; ?></td>
                     <td><?php echo $dados['localidade_02']; ?></td>
                     <td style="white-space: nowrap;">
-                        <a href="#" class="btn btn-primary btn-sm btn-editar" data-toggle="modal" data-target="#modalEditarUsuario" data-id="<?php echo $dados['id']; ?>"><i class="material-icons">edit</i></a>
+                        <a href="#" class="btn btn-primary btn-sm btn-editar" data-toggle="modal" data-target="#ModalEditar" data-id="<?php echo $dados['id']; ?>"><i class="material-icons">edit</i></a>
                         <a href="#" class="btn btn-primary btn-sm btn-visualizar" data-toggle="modal" data-target=".bd-example-modal-lg" data-id="<?php echo $dados['id']; ?>"><i class="material-icons">search</i></a>
                     </td>
                 </tr>
@@ -254,11 +254,12 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
     </div>
 
     <!--//Modal Vizualizar-->
-    <div class="modal fade bd-example-modal-lg" id='ModalVisualizar' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id='ModalVisualizar' tabindex="-1" role="dialog"
+         aria-labelledby="ModalVisualizarlLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Detalhes da Corrida</h5>
+                    <h5 class="modal-title" id="ModalVisualizarlLabel">Detalhes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -267,54 +268,54 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <form>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="inputEmail4">Funcion·rio:</label>
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="" readonly>
+                                <label for="nome_funcionario">Funcion√°rio:</label>
+                                <input type="text" class="form-control" id="nome_funcionario" placeholder="" readonly>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="inputPassword4">Numero do Veiculo:</label>
-                                <input type="password" class="form-control" id="inputPassword4" placeholder="" readonly>
+                                <label for="data">Data:</label>
+                                <input type="" class="form-control" id="data" placeholder="" readonly>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="inputPassword4">Placa:</label>
-                                <input type="password" class="form-control" id="inputPassword4" placeholder="" readonly>
+                                <label for="placa">Placa:</label>
+                                <input type="text" class="form-control" id="placa" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="inputAddress">KM Inicial:</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="" readonly>
+                                <label for="kmInicial">KM Inicial:</label>
+                                <input type="text" class="form-control" id="kmInicial" placeholder="" readonly>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputAddress2">KM Final:</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="" readonly>
+                                <label for="kmFinal">KM Final:</label>
+                                <input type="number" class="form-control" id="kmFinal" placeholder="" readonly>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputAddress2">Hora da Saida:</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="" readonly>
+                                <label for="horaSaida">Hora da Saida:</label>
+                                <input type="text" class="form-control" id="horaSaida" placeholder="" readonly>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputAddress2">Hora da Chegada:</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="" readonly>
+                                <label for="horaChegada">Hora da Chegada:</label>
+                                <input type="text" class="form-control" id="horaChegada" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputCity">Cidade:</label>
-                                <input type="text" class="form-control" id="inputCity" readonly>
+                                <label for="cidade">Cidade:</label>
+                                <input type="text" class="form-control" id="cidade" readonly>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputEstado">Localidade:</label>
-                                <input type="text" class="form-control" id="inputCity" readonly>
+                                <label for="localidade">Localidade:</label>
+                                <input type="text" class="form-control" id="localidade" readonly>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputCity">Cidade 2:</label>
-                                <input type="text" class="form-control" id="inputCity" readonly>
+                                <label for="cidadeDois">Cidade 2:</label>
+                                <input type="text" class="form-control" id="cidadeDois" readonly>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputEstado">Localidade 2:</label>
-                                <input type="text" class="form-control" id="inputCity" readonly>
+                                <label for="localidadeDois">Localidade 2:</label>
+                                <input type="text" class="form-control" id="localidadeDois" readonly>
                             </div>
                         </div>
                     </form>
@@ -326,6 +327,82 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         </div>
     </div>
     <!--//Modal Vizualizar-->
+
+    <!--//Modal Editar-->
+    <div class="modal fade bd-example-modal-lg" id='ModalEditar' tabindex="-1" role="dialog"
+         aria-labelledby="ModalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalEditarLabel">Detalhes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="nome_funcionario_editar">Funcion√°rio:</label>
+                                <input type="text" class="form-control" id="nome_funcionario_editar" placeholder="" >
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="data_editar">Data:</label>
+                                <input type="text" class="form-control" id="data_editar" placeholder="" >
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="placa_editar">Placa:</label>
+                                <input type="text" class="form-control" id="placa_editar" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="kmInicial_editar">KM Inicial:</label>
+                                <input type="number" class="form-control" id="kmInicial_editar" placeholder="" >
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="kmFinal_editar">KM Final:</label>
+                                <input type="number" class="form-control" id="kmFinal_editar" placeholder="" >
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="horaSaida_editar">Hora da Saida:</label>
+                                <input type="time" class="form-control" id="horaSaida_editar" placeholder="" >
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="horaChegada_editar">Hora da Chegada:</label>
+                                <input type="time" class="form-control" id="horaChegada_editar" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="cidade_editar">Cidade:</label>
+                                <input type="text" class="form-control" id="cidade_editar" >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="localidade_editar">Localidade:</label>
+                                <input type="text" class="form-control" id="localidade_editar" >
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="cidadeDois_editar">Cidade 2:</label>
+                                <input type="text" class="form-control" id="cidadeDois_editar" >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="localidadeDois_editar">Localidade 2:</label>
+                                <input type="text" class="form-control" id="localidadeDois_editar" >
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success btn-salvar-edicao" data-id="">Salvar Edi√ß√£o</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//Modal Editar-->
 
     <div>
         <ul class="pagination justify-content-center" style="margin-top: 7px;">
@@ -340,6 +417,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#btnAtualizarTabela').click(function () {
@@ -350,19 +428,136 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                 window.print();
             });
 
-            $('#btn-visualizar').click(function () {
+            $('.btn-visualizar').click(function () {
+                var userId = $(this).data('id');
 
-                //LOGICA DE VISUALIZAR
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:3000/api/getCarroControle/' + userId,
+                    success: function (response) {
+                        $('#nome_funcionario').val(response.nome_funcionario);
+                        $('#placa').val(response.placa);
+                        $('#kmInicial').val(response.km_inicial);
+                        $('#kmFinal').val(response.km_final);
+                        $('#horaSaida').val(response.hora_saida);
+                        $('#horaChegada').val(response.hora_chegada);
+                        $('#cidade').val(response.cidade);
+                        $('#localidade').val(response.localidade);
+                        $('#cidadeDois').val(response.cidade_02);
+                        $('#localidadeDois').val(response.localidade_02);
 
-                $('#ModalVisualizar').trigger('focus')
-            })
+                        console.log(response.data);
 
-            $('#btn-editar').click(function () {
+                        if (response.data) {
+                            var dataFormatada = formatarData(response.data);
+                            $('#data').val(dataFormatada);
+                        }
 
-                //LOGICA DE EDI«√O
+                        $('#ModalVisualizar').modal('show');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
 
-                $('#ModalEditar').trigger('focus')
-            })
+                function formatarData(dataISO) {
+                    const data = new Date(dataISO);
+                    const dia = String(data.getDate()).padStart(2, '0');
+                    const mes = String(data.getMonth() + 1).padStart(2, '0');
+                    const ano = data.getFullYear();
+                    return `${dia}/${mes}/${ano}`;
+                }
+            });
+
+
+            $('.btn-editar').click(function () {
+                var userId = $(this).data('id');
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:3000/api/getCarroControle/' + userId,
+                    success: function (response) {
+                        $('#nome_funcionario_editar').val(response.nome_funcionario);
+
+                        if (response.data) {
+                            var dataFormatada = formatarData(response.data);
+                            $('#data_editar').val(dataFormatada);
+                            $('#data_editar').mask('00/00/0000'); //mascara
+                        }
+
+                        $('#placa_editar').val(response.placa);
+                        $('#kmInicial_editar').val(response.km_inicial);
+                        $('#kmFinal_editar').val(response.km_final);
+                        $('#horaSaida_editar').val(response.hora_saida);
+                        $('#horaChegada_editar').val(response.hora_chegada);
+                        $('#cidade_editar').val(response.cidade);
+                        $('#localidade_editar').val(response.localidade);
+                        $('#cidadeDois_editar').val(response.cidade_02);
+                        $('#localidadeDois_editar').val(response.cidade_02);
+
+                        $('.btn-salvar-edicao').data('id', userId);
+
+                        $('#modalEditarCorrida').modal('show');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            $('.btn-salvar-edicao').click(function (event) {
+                event.preventDefault();
+                var userId = $(this).data('id');
+
+                var nome_funcionario_editar = $('#nome_funcionario_editar').val();
+                var data_editar = $('#data_editar').val();
+                var placa_editar = $('#placa_editar').val();
+                var kmInicial_editar = $('#kmInicial_editar').val();
+                var kmFinal_editar = $('#kmFinal_editar').val();
+                var horaSaida_editar = $('#horaSaida_editar').val();
+                var horaChegada_editar = $('#horaChegada_editar').val();
+                var cidade_editar = $('#cidade_editar').val();
+                var localidade_editar = $('#localidade_editar').val();
+                var cidadeDois_editar = $('#cidadeDois_editar').val();
+                var localidadeDois_editar = $('#localidadeDois_editar').val();
+
+                var requestData = {
+                    nome_funcionario: nome_funcionario_editar,
+                    data: data_editar,
+                    placa: placa_editar,
+                    kmInicial: kmInicial_editar,
+                    kmFinal: kmFinal_editar,
+                    horaSaida: horaSaida_editar,
+                    horaChegada: horaChegada_editar,
+                    cidade: cidade_editar,
+                    localidade: localidade_editar,
+                    cidade_dois: cidadeDois_editar,
+                    localidade_dois: localidadeDois_editar
+                };
+
+                $.ajax({
+                    type: 'PUT',
+                    url: 'http://localhost:3000/api/AtualizarCarro/' + userId,
+                    data: JSON.stringify(requestData),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        alert(response.message);
+                        $('#modalEditarCorrida').modal('hide');
+                        location.reload();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            function formatarData(dataISO) {
+                const data = new Date(dataISO);
+                const dia = String(data.getDate()).padStart(2, '0');
+                const mes = String(data.getMonth() + 1).padStart(2, '0');
+                const ano = data.getFullYear();
+                return `${dia}/${mes}/${ano}`;
+            }
         });
     </script>
 </body>

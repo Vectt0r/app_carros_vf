@@ -151,8 +151,7 @@ router.post('/CadastrarNovoUsuario', async (req, res) => {
   }
 });
 
-
-
+//Rota para editar usuario
 router.put('/AtualizarUsuario/:id', async (req, res) => {
   const userId = req.params.id;
   const { nome, nome_completo, senha, setor, telefone } = req.body;
@@ -186,6 +185,36 @@ router.put('/AtualizarUsuario/:id', async (req, res) => {
       res.status(500).json({ error: 'Erro ao hashear senha' });
   }
 });
+
+//Atualizar Corrida
+router.put('/AtualizarCarro/:id', async (req, res) => {
+  const carroId = req.params.id;
+  const { nome_funcionario, data, placa, kmInicial, kmFinal, horaSaida, horaChegada, cidade, localidade, cidade_dois, localidade_dois } = req.body;
+
+  console.log('Dados recebidos:', { nome_funcionario, data, placa, kmInicial, kmFinal, horaSaida, horaChegada, cidade, localidade, cidade_dois, localidade_dois })
+  
+  try {
+    
+  var partesData = data.split('/');
+  var dataFormatada = new Date(partesData[2], partesData[1] - 1, partesData[0]).toISOString().split('T')[0];
+
+      const query = 'UPDATE carros_controle SET nome_funcionario = ?, data = ?, placa = ?, km_inicial = ?, km_final = ?, hora_saida = ?, hora_chegada = ?, cidade = ?, localidade = ?, cidade_02 = ?, localidade_02 = ? WHERE id = ?';
+      const params = [nome_funcionario, dataFormatada, placa, kmInicial, kmFinal, horaSaida, horaChegada, cidade, localidade, cidade_dois, localidade_dois, carroId];
+
+      connection.query(query, params, (error, results) => {
+          if (error) {
+              console.error('Erro ao atualizar dados no banco de dados:', error);
+              res.status(500).json({ error: 'Erro ao atualizar dados no banco de dados' });
+          } else {
+              res.json({ success: true, message: 'Dados atualizados com sucesso' });
+          }
+      });
+  } catch (error) {
+      console.error('Erro ao processar dados:', error);
+      res.status(500).json({ error: 'Erro ao processar dados' });
+  }
+});
+
 
 
 

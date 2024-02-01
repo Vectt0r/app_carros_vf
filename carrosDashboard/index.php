@@ -138,71 +138,65 @@ if (isset($_SESSION['erroLogin']) && $_SESSION['erroLogin']) {
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <form method="post" action="acao_login.php" id="loginForm">
-            <div class="form-group">
-                <label for="nome">Usuário:</label>
-                <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite Seu Nome" oninput="validateName(this);" required>
-            </div>
-            <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required>
-            </div>
-            <div class="checkbox-container">
-                <input type="checkbox" id="termos" name="termos" class="checkbox-input">
-                <label class="checkbox-label" for="termos" id="termosLabel">Manter Login</label>
-            </div>
-            <div class="button-container">
-                <button type="submit" class="btn btn-primary">Conectar</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="modal-overlay" id="errorModal" <?php if(isset($_SESSION['erroLogin']) && $_SESSION['erroLogin']) echo 'style="display: flex;"'; ?>>
-        <div class="modal-content">
-            <h2>Erro de Autenticação</h2>
-            <p>Usuário ou Senha inválido. Por favor, tente novamente.</p>
-            <button id="fecharErroModalBtn" class="btn btn-secondary modal-button">Fechar</button>
+<div class="login-container">
+    <form method="post" action="acao_login.php" id="loginForm">
+        <div class="form-group">
+            <label for="nome">Usuário:</label>
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite Seu Nome" oninput="validateName(this);" required>
         </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="termos" name="termos" class="checkbox-input">
+            <label class="checkbox-label" for="termos" id="termosLabel">Manter Login</label>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary">Conectar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal-overlay" id="errorModal" <?php if(isset($_SESSION['erroLogin']) && $_SESSION['erroLogin']) echo 'style="display: flex;"'; ?>>
+    <div class="modal-content">
+        <h2>Erro de Autenticação</h2>
+        <p>Usuário ou Senha inválido. Por favor, tente novamente.</p>
+        <button id="fecharErroModalBtn" class="btn btn-secondary modal-button">Fechar</button>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script>
-        const errorModal = document.getElementById("errorModal");
-        const fecharErroModalBtn = document.getElementById("fecharErroModalBtn");
+<script>
+    const errorModal = document.getElementById("errorModal");
+    const fecharErroModalBtn = document.getElementById("fecharErroModalBtn");
 
-        fecharErroModalBtn.addEventListener("click", () => {
-            errorModal.style.display = "none";
-        });
+    fecharErroModalBtn.addEventListener("click", () => {
+        errorModal.style.display = "none";
+    });
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.getElementById("loginForm");
-            const nomeInput = document.getElementById("nome");
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("loginForm");
+        const nomeInput = document.getElementById("nome");
+        const manterLoginCheckbox = document.getElementById("termos");
+        const nomeArmazenado = localStorage.getItem("nomeUsuario");
 
-            // Tenta recuperar o nome do usuário do localStorage
-            const nomeArmazenado = localStorage.getItem("nomeUsuario");
+        if (nomeArmazenado) {
+            nomeInput.value = nomeArmazenado;
+            manterLoginCheckbox.checked = true;
+        }
 
-            // Se houver um nome de usuário armazenado, preenche automaticamente o campo de nome
-            if (nomeArmazenado) {
-                nomeInput.value = nomeArmazenado;
-                // Verifica se a opção "Manter Login" estava marcada
-                manterLoginCheckbox.checked = true;
+        form.addEventListener("submit", function () {
+            if (manterLoginCheckbox.checked) {
+                localStorage.setItem("nomeUsuario", nomeInput.value);
+            } else {
+                localStorage.removeItem("nomeUsuario");
             }
-
-            // Adiciona um ouvinte de evento para o envio do formulário
-            form.addEventListener("submit", function () {
-                // Armazena o nome do usuário no localStorage se a opção "Manter Login" estiver marcada
-                if (manterLoginCheckbox.checked) {
-                    localStorage.setItem("nomeUsuario", nomeInput.value);
-                } else {
-                    // Limpa o localStorage se a opção "Manter Login" não estiver marcada
-                    localStorage.removeItem("nomeUsuario");
-                }
-            });
         });
-    </script>
+    });
+</script>
 </body>
 </html>

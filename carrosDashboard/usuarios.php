@@ -59,7 +59,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
 
 <head>
     <meta charset="utf-8">
-    <title>Controle de VeÌculos</title>
+    <title>Controle de Ve√≠culos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -168,7 +168,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         <form class="form-inline mb-3 ml-auto">
             <button type="button" class="btn btn-primary ml-2" id="btnAtualizarTabela">Atualizar Tabela</button>
             <button type="button" class="btn btn-success ml-2" data-toggle="modal"
-                    data-target="#modalAdicionarUsuario" style="margin-left: 7px;">Adicionar Usu·rio</button>
+                    data-target="#modalAdicionarUsuario" style="margin-left: 7px;">Adicionar Usu√°rio</button>
         </form>
     </form>
 
@@ -177,11 +177,11 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
             <thead>
             <tr>
                 <th style="white-space: nowrap;">ID</th>
-                <th style="white-space: nowrap;">Usu·rio</th>
+                <th style="white-space: nowrap;">Usu√°rio</th>
                 <th style="white-space: nowrap;">Nome Completo</th>
                 <th style="white-space: nowrap;">Telefone</th>
                 <th style="white-space: nowrap;">Setor</th>
-                <th style="white-space: nowrap;width: 0px;">AÁıes</th>
+                <th style="white-space: nowrap;width: 0px;">A√ß√µes</th>
             </tr>
             </thead>
             <tbody>
@@ -194,7 +194,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <td style="white-space: nowrap;"><?php echo $dados['setor']; ?></td>
                     <td style="white-space: nowrap;">
 
-                        <!--BOT’ES DE AC√O-->
+                        <!--BOT√ïES DE AC√ÉO-->
                         <a href="#" class="btn btn-primary btn-sm btn-editar" data-toggle="modal"
                            data-target="#modalEditarUsuario_<?php echo $dados['id']; ?>"
                            data-id="<?php echo $dados['id']; ?>"><i class="material-icons">edit</i></a>
@@ -202,7 +202,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
 <!--                           data-target="#modalVisualizarUsuario_--><?php //echo $dados['id']; ?><!--"-->
 <!--                           data-id="--><?php //echo $dados['id']; ?><!--"><i class="material-icons">visibility</i></a>-->
                         <a href="#" class="btn btn-primary btn-sm"><i class="material-icons">delete</i></a>
-                        <!--BOT’ES DE AC√O-->
+                        <!--BOT√ïES DE AC√ÉO-->
 
                     </td>
                 </tr>
@@ -228,7 +228,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalAdicionarUsuarioLabel">Novo Usu·rio</h5>
+                    <h5 class="modal-title" id="modalAdicionarUsuarioLabel">Novo Usu√°rio</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -237,7 +237,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <form id="formAdicionarUsuario" action="salvar_usuario.php" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="nomeNovoUsuario">Usu·rio</label>
+                                <label for="nomeNovoUsuario">Usu√°rio</label>
                                 <input type="text" class="form-control" id="nomeNovoUsuario" name="nomeNovoUsuario"
                                        placeholder="">
                             </div>
@@ -260,10 +260,10 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                             <div class="form-group col-md-6">
                                 <label for="setorNovoUsuario">Setor</label>
                                 <select id="setorNovoUsuario" name="setorNovoUsuario" class="form-control">
-                                    <option selected>AdministraÁ„o</option>
+                                    <option selected>Administra√ß√£o</option>
                                     <option>Infraestrutura</option>
                                     <option>Suporte</option>
-                                    <option>InstalaÁ„o</option>
+                                    <option>Instala√ß√£o</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
@@ -289,17 +289,17 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalVisualizarUsuarioLabel">Detalhes do Usu·rio</h5>
+                    <h5 class="modal-title" id="modalVisualizarUsuarioLabel">Detalhes do Usu√°rio</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" id="visualizarUsuarioBody">
-                    <!-- Os detalhes do usu·rio ser„o inseridos aqui dinamicamente via AJAX -->
+                    <!-- Os detalhes do usu√°rio ser√£o inseridos aqui dinamicamente via AJAX -->
                     <form id="formVisualizarUsuario" action="#" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="userName">Nome de Usu·rio</label>
+                                <label for="userName">Nome de Usu√°rio</label>
                                 <input type="text" class="form-control" id="userName" readonly>
                             </div>
                             <div class="form-group col-md-6">
@@ -330,8 +330,8 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditarUsuarioLabel">Editar Usu·rio</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <h5 class="modal-title" id="modalEditarUsuarioLabel">Editar Usu√°rio</h5>
+                    <button type="button" id="botao_fechar" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -339,7 +339,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     <form id="formEditarUsuario" action="#" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="editUserName">Nome de Usu·rio</label>
+                                <label for="editUserName">Nome de Usu√°rio</label>
                                 <input type="text" class="form-control" id="editUserName" readonly>
                             </div>
                             <div class="form-group col-md-6">
@@ -357,21 +357,21 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                             <div class="form-group col-md-6">
                                 <label for="editUserSector">Setor</label>
                                 <select id="editUserSector" name="editUserSector" class="form-control">
-                                    <option selected>AdministraÁ„o</option>
+                                    <option selected>Administra√ß√£o</option>
                                     <option>Infraestrutura</option>
                                     <option>Suporte</option>
-                                    <option>InstalaÁ„o</option>
+                                    <option>Instala√ß√£o</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="editUserPhone">Telefone</label>
-                                <input type="text" class="form-control" id="editUserPhone" name="editUserPhone">
+                                <input type="tel" class="form-control" id="editUserPhone" name="editUserPhone">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" id="botao_fechar_modal"class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                             <button type="button" class="btn btn-danger btn-enable-edit-password">Editar Senha</button>
-                            <button type="button" class="btn btn-success btn-salvar-edicao" data-id="">Salvar EdiÁ„o</button>
+                            <button type="button" class="btn btn-success btn-salvar-edicao" data-id="">Salvar Edi√ß√£o</button>
 
                         </div>
                     </form>
@@ -386,9 +386,6 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#btnAtualizarTabela').click(function () {
-                location.reload();
-            });
 
             $('#formAdicionarUsuario').submit(function (event) {
                 event.preventDefault();
@@ -399,15 +396,15 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                 var setorNovoUsuario = $('#setorNovoUsuario').val();
                 var telefoneNovoUsuario = $('#telefoneNovoUsuario').val();
 
-                //Verifique se todos os campos est„o preenchidos
+                //Verifique se todos os campos est√£o preenchidos
                 if (!nomeNovoUsuario || !nomeCompletoNovoUsuario || !senhaNovoUsuario || !setorNovoUsuario || !telefoneNovoUsuario) {
                     alert('Por favor, preencha todos os campos antes de enviar.');
                     return;
                 }
 
-                //ConfirmaÁ„o e senha
+                //Confirma√ß√£o e senha
                 if(ConfirmarsenhaNovoUsuario != senhaNovoUsuario){
-                    alert('As senhas digitadas n√£o coincidem')
+                    alert('As senhas digitadas n√É¬£o coincidem')
                     return;
                 }
 
@@ -464,18 +461,14 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     type: 'GET',
                     url: 'http://localhost:3000/api/getCarroUsuario/' + userId,
                     success: function (response) {
-                        // Preencher os campos do formul·rio com os dados do usu·rio
+                        // Preencher os campos do formul√°rio com os dados do usu√°rio
                         $('#editUserName').val(response.nome);
                         $('#editUserFullName').val(response.nome_completo);
-                        // $('#editUserPassword').val(response.senha.slice(0, 10)); // Corrigido o ID aqui
-                        // $('#editUserConfirmPassword').val(response.senha.slice(0, 10));
                         $('#editUserSector').val(response.setor);
                         $('#editUserPhone').val(response.telefone);
-
-                        // Atualizar o ID do bot„o de salvar ediÁ„o
                         $('.btn-salvar-edicao').data('id', userId);
 
-                        // Exibir o modal de ediÁ„o
+                        // Exibir o modal de edi√ß√£o
                         $('#modalEditarUsuario').modal('show');
                     },
                     error: function (error) {
@@ -495,7 +488,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                 var editUserSector = $('#editUserSector').val();
                 var editUserPhone = $('#editUserPhone').val();
 
-                // Trate os valores nulos ou vazios antes de enviar a atualizaÁ„o
+                // Trate os valores nulos ou vazios antes de enviar a atualiza√ß√£o
                 var requestData = {
                     senha: editUserPassword !== '' ? editUserPassword : null,
                     setor: editUserSector !== '' ? editUserSector : null,
@@ -505,6 +498,7 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                 // Adicione os campos de nome e nome completo se estiverem presentes
                 var editUserName = $('#editUserName').val();
                 var editUserFullName = $('#editUserFullName').val();
+                var editUserPhoneValue = $('#editUserPhone').val();
 
                 if (editUserName) {
                     requestData.nome = editUserName;
@@ -514,13 +508,13 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     requestData.nome_completo = editUserFullName;
                 }
 
-                // ConfirmaÁ„o de senha
+                // Confirma√ß√£o de senha
                 if (editUserPassword !== editUserConfirmPassword) {
-                    alert('As senhas n„o coincidem.');
+                    alert('As senhas n√£o coincidem.');
                     return;
                 }
 
-                // Submeter AJAX para a nova rota de atualizaÁ„o
+                // Submeter AJAX para a nova rota de atualiza√ß√£o
                 $.ajax({
                     type: 'PUT',
                     url: 'http://localhost:3000/api/AtualizarUsuario/' + userId,
@@ -529,13 +523,23 @@ $dadosPaginaAtual = array_slice($dadosFiltrados, $indiceInicial, $resultadosPorP
                     success: function (response) {
                         alert(response.message);
                         $('#modalEditarUsuario').modal('hide');
-                        location.reload(); // Recarrega a p·gina automaticamente ao editar um novo usu·rio
+                        location.reload(); // Recarrega a p√°gina automaticamente ao editar um novo usu√°rio
                     },
                     error: function (error) {
                         console.log(error);
                     }
                 });
 
+            });
+
+            // Bot√£o fechar da modal de edi√ß√£o - reinicia a modal
+            $('#botao_fechar, #botao_fechar_modal').click(function () {
+                $('#editUserPassword, #editUserConfirmPassword').prop('readonly', true);
+            });
+
+            // Atualizar pagina
+            $('#btnAtualizarTabela').click(function () {
+                location.reload();
             });
 
             $('.btn-enable-edit-password').click(function () {
