@@ -50,7 +50,7 @@ const CarForm = ({}) => {
   }, []);
 
   useEffect(() => {
-    // Verifica se todos os campos obrigatorios est�o preenchidos
+    // Verifica se todos os campos obrigatorios estão preenchidos
     setIsFormValid(
       nomeFuncionario && 
       placaCarro && 
@@ -92,15 +92,14 @@ const CarForm = ({}) => {
     <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollViewContent} keyboardShouldPersistTaps="handled">
 
-        <Text style={styles.label}>Nome do Funcionário</Text>
+        <Text style={styles.label}>Nome do FuncionÃ¡rio</Text>
           <TextInput
             style={styles.input}
             placeholder=""
             value={nomeFuncionario}
-            onChangeText={(text) => {
-              const formattedText = text.replace(/[^a-zA-Z\s]/g, '');
-              setNomeFuncionario(formattedText);
-            }}
+            onChangeText={(text) => 
+              setNomeFuncionario(text)
+            }
           />
 
           <Text style={styles.label}>Numero da Placa</Text>
@@ -120,7 +119,7 @@ const CarForm = ({}) => {
             keyboardType="numeric"
           />
 
-          <Text style={styles.label}>Hora Saída</Text>
+          <Text style={styles.label}>Hora SaÃ­da</Text>
           <TextInput
             style={[styles.input, !horaSaida ? styles.greyedInput : null]}
             placeholder=""
@@ -134,9 +133,8 @@ const CarForm = ({}) => {
             style={styles.input}
             placeholder=""
             value={cidade}
-            onChangeText={(text) =>{
-              const formattedText = text.replace(/[^a-zA-Z\s]/g, '');
-              setCidade(formattedText)}}
+            onChangeText={(text) =>
+              setCidade(text)}
           />
 
           <Text style={styles.label}>Localidade</Text>
@@ -144,9 +142,8 @@ const CarForm = ({}) => {
             style={styles.input}
             placeholder=""
             value={localidade}
-            onChangeText={(text) => {
-              const formattedText = text.replace(/[^a-zA-Z\s]/g, '');
-              setLocalidade(formattedText)}}
+            onChangeText={(text) => 
+              setLocalidade(text)}
           />
 
           <TouchableOpacity 
