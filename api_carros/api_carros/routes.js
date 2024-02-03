@@ -45,20 +45,21 @@ router.post('/encerrarCorrida', (req, res) => {
     localidadeDois,
   });
 
-  const query =
-    'INSERT INTO carros_controle (nome_funcionario, placa, km_inicial, km_final, hora_saida, hora_chegada, data, cidade, localidade, cidade_02, localidade_02, status) VALUES (?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  connection.query(
-    query,
-    [nome, placa, kmInicial, kmFinal, horaSaida, horaChegada, data, cidade, localidade, cidadeDois, localidadeDois, status],
-    (error, results) => {
-      if (error) {
-        console.error('Erro ao inserir dados no banco de dados:', error);
-        res.status(500).json({ error: 'Erro ao inserir dados no banco de dados' });
-      } else {
-        res.json({ success: true, message: 'Dados inseridos com sucesso' });
+  const query = 'INSERT INTO carros_controle (nome_funcionario, placa, km_inicial, km_final, hora_saida, hora_chegada, data, cidade, localidade, cidade_02, localidade_02, status) VALUES (?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    connection.query(
+      query,
+      [nome, placa, kmInicial, kmFinal, horaSaida, horaChegada, data, cidade, localidade, cidadeDois, localidadeDois, status],
+      (error, results) => {
+        if (error) {
+          console.error('Erro ao inserir dados no banco de dados:', error);
+          res.status(500).json({ error: 'Erro ao inserir dados no banco de dados' });
+        } else {
+          const insertedId = results.insertId; // Obtém o ID da linha recém-inserida
+          console.log('ID da linha recém-inserida:', insertedId); // Exibe o ID no console
+          res.json({ success: true, message: 'Dados inseridos com sucesso', insertedId });
+        }
       }
-    }
-  );
+    );
 });
 
 //Rota para obter todos os registros
